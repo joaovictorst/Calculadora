@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    outline: dashed 1px red;
+    /* outline: dashed 1px red; */
 
     font-family: "Nunito Sans", serif;
 }
@@ -239,7 +239,7 @@ button:hover {
 .history {
     background-color: #f7f7f7;
     width: 100%;
-    height: 400px;
+    height: 300px;
 
     -webkit-box-shadow: inset 0px 0px 49px -14px rgba(0, 0, 0, 0.2);
     -moz-box-shadow: inset 0px 0px 49px -14px rgba(0, 0, 0, 0.2);

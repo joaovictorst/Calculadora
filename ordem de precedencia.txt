@@ -1,0 +1,4 @@
+1º Parêntesis;
+2º Expoentes;
+3º Multiplicações e Divisões; (da esquerda para a direita)
+4º Somas e Subtrações. (da esquerda para a direita)

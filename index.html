@@ -2,41 +2,60 @@
 <html lang="en">
 
 <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"
+        rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <script src="./script.js" defer></script>
     <title>Calculadora</title>
 </head>
 
 <body>
     <div class="calc">
-        <div class="display"></div>
+        <div class="header">
+            <button>Undo</button>
+            <button class="basicButton">Basic
+                <img src="./images/icons/ArrowDown.svg" alt="ArrowDown">
+            </button>
+            <div class="utilityButtons">
+                <button><img src="./images/icons/minimize.svg" alt=""></button>
+                <button><img src="./images/icons/maximize.svg" alt=""></button>
+                <button><img src="./images/icons/close.svg"></button>
+            </div>
+        </div>
+        <div class="history"></div>
+
+        <div id="display" class="display">123432</div>
 
         <div class="parent">
-            <div class="delete"><button><img src="./images/icons/Backspace.svg" alt=""></button></div>
-            <div class="div2"><button>(</button></div>
-            <div class="div3"><button>)</button></div>
-            <div class="div4"><button>mod</button></div>
-            <div class="div5"><button>n</button></div>
-            <div class="div6"><button>7</button></div>
-            <div class="div7"><button>8</button></div>
-            <div class="div8"><button>9</button></div>
-            <div class="div9"><button>÷</button></div>
-            <div class="div10"><button>raiz</button></div>
-            <div class="div11"><button>4</button></div>
-            <div class="div12"><button>5</button></div>
-            <div class="div13"><button>6</button></div>
-            <div class="div14"><button>x</button></div>
-            <div class="div15"><button>x²</button></div>
-            <div class="div16"><button>1</button></div>
-            <div class="div17"><button>2</button></div>
-            <div class="div18"><button>3</button></div>
-            <div class="div19"><button>-</button></div>
-            <div class="equal"><button>=</button></div>
-            <div class="div21"><button>0</button></div>
-            <div class="div22"><button>,</button></div>
-            <div class="div23"><button>%</button></div>
-            <div class="div24"><button>+</button></div>
+            <div onclick="type(this)"class="delete"><button><img src="./images/icons/Backspace.svg" alt=""></button></div>
+            <div onclick="type(this)"class="div2"><button>(</button></div>
+            <div onclick="type(this)"class="div3"><button>)</button></div>
+            <div onclick="type(this)"class="div4"><button>mod</button></div>
+            <div onclick="type(this)"class="div5"><button>n</button></div>
+            <div onclick="type(this)"class="div6"><button>7</button></div>
+            <div onclick="type(this)"class="div7"><button>8</button></div>
+            <div onclick="type(this)"class="div8"><button>9</button></div>
+            <div onclick="type(this)"class="div9"><button>÷</button></div>
+            <div onclick="type(this)"class="div10"><button>raiz</button></div>
+            <div onclick="type(this)"class="div11"><button>4</button></div>
+            <div onclick="type(this)"class="div12"><button>5</button></div>
+            <div onclick="type(this)"class="div13"><button>6</button></div>
+            <div onclick="type(this)"class="div14"><button>x</button></div>
+            <div onclick="type(this)"class="div15"><button>x²</button></div>
+            <div onclick="type(this)"class="div16"><button>1</button></div>
+            <div onclick="type(this)"class="div17"><button>2</button></div>
+            <div onclick="type(this)"class="div18"><button>3</button></div>
+            <div onclick="type(this)"class="div19"><button>-</button></div>
+            <div onclick="type(this)"class="equal"><button>=</button></div>
+            <div onclick="type(this)"class="div21"><button>0</button></div>
+            <div onclick="type(this)"class="div22"><button>,</button></div>
+            <div onclick="type(this)"class="div23"><button>%</button></div>
+            <div onclick="type(this)"class="div24"><button>+</button></div>
         </div>
 
     </div>

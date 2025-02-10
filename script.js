@@ -25,55 +25,177 @@ function result() {
     if (expression == null) {
         display.innerText = `escreva um calculo`
     } else {
-        display.innerText = verifySymbol(expression);
-    }
-
-}
-
-function verifySymbol(expression) {
-    parentheses(expression)
-}
-
-function parentheses(expression) {
-    for(let i = 0; i < expression.length; i++){
-        if(expression[i] == "("){
-            let closeParen = expression.indexOf(')')
-            let array = expression.slice(i + 1,closeParen)
-            resolve(array)
+        //display.innerText = verifySymbol(expression);
+        let result = precedenceOrder(numberfy(expression))
+        for (let i = 0; result.length > 1; i++) {
+            result = precedenceOrder(result)
         }
-        return
+        display.innerText = result
+    }
+
+}
+
+function precedenceOrder(array) {
+    if (array.includes('(') && array.includes(')')) {
+        let calc = parenteses(array)
+        let init = array.indexOf('(')
+        let close = array.indexOf(')')
+        array.splice(init, close - init + 1, calc)
+        return array
+    } else if (array.includes('x²') || array.includes('√')) {
+        let init = 0;
+        if (array.includes('x²')) {
+            init = array.indexOf('x²')
+        } else {
+            init = array.indexOf('√')
+        }
+        if(array.includes('x²') && array.includes('√')){
+            if(array.indexOf('x²') < array.indexOf('√')){
+                init = array.indexOf('x²')
+            }else {
+                init = array.indexOf('√')
+            }
+        }
+        let calc = expAndRad(array)
+        if(array[init] == '√'){
+            array.splice(init, 2, calc)
+        }else{
+            array.splice(init - 1, 2, calc)
+        }
+        return array
+    } else if (array.includes('x') || array.includes('÷')) {
+        let init = 0;
+        if (array.includes('x')) {
+            init = array.indexOf('x')
+        } else {
+            init = array.indexOf('÷')
+        }
+        if(array.includes('x') && array.includes('÷')){
+            if(array.indexOf('x') < array.indexOf('÷')){
+                init = array.indexOf('x')
+            }else {
+                init = array.indexOf('÷')
+            }
+        }
+        let calc = multAndDiv(array)
+        array.splice(init - 1, 3, calc)
+        return array
+    } else if (array.includes('+') || array.includes('-')) {
+        let init = 0;
+        if (array.includes('+')) {
+            init = array.indexOf('+')
+        } else {
+            init = array.indexOf('-')
+        }
+        if(array.includes('+') && array.includes('-')){
+            if(array.indexOf('+') < array.indexOf('-')){
+                init = array.indexOf('+')
+            }else {
+                init = array.indexOf('-')
+            }
+        }
+        let calc = addAndSub(array)
+        array.splice(init - 1, init + 2, calc)
+        return array
+
     }
 }
 
-function expAndRad(array){
-    for(let i = 0; i < array.length; i++){
-        if(array[i] == 'x²'){
-            let calc = array[i-1] * array[i-1];
-            array.splice(i - 1, i, calc)
+function parenteses(array) {
+    if (array.includes('(') && array.includes(')')) {
+        let init = array.indexOf('(') + 1
+        let close = array.indexOf(')')
+        let express = array.slice(init, close)
+        let calc = precedenceOrder(express)
 
-        }else if (array[i] == '√'){
-            let calc =  Math.sqrt(array[i+1]);
-            array.splice(i, i + 1, calc)
+        for (let i = 0; calc.length > 1; i++) {
+            calc = precedenceOrder(calc)
+        }
+
+        return calc[0]
+    }
+}
+
+function expAndRad(array) {
+    if (array.includes('x²') && array.includes('√')) {
+        if (array.indexOf('x²') < array.indexOf('√')) {
+            let init = array.indexOf('x²')
+            let calc = array[init - 1] * array[init - 1]
+            return calc
+        } else {
+            let init = array.indexOf('√')
+            let calc = Math.sqrt(array[init+1])
+            return calc
         }
     }
-    console.log(array)
+    if (array.includes('x²')) {
+        let init = array.indexOf('x²')
+
+        let calc = array[init - 1] * array[init - 1]
+        return calc
+    } else {
+        let init = array.indexOf('√')
+
+        let calc = Math.sqrt(array[init+1])
+        return calc
+    }
+
 }
 
-function multAndDiv(){
+function multAndDiv(array) {
+    if (array.includes('x') && array.includes('÷')) {
+        if (array.indexOf('x') < array.indexOf('÷')) {
+            let init = array.indexOf('x')
+            let calc = array[init - 1] * array[init + 1]
+            return calc
+        } else {
+            let init = array.indexOf('÷')
+            let calc = array[init - 1] / array[init + 1]
+            return calc
+        }
+    }
+    if (array.includes('x')) {
+        let init = array.indexOf('x')
 
+        let calc = array[init - 1] * array[init + 1]
+        return calc
+    } else {
+        let init = array.indexOf('÷')
+
+        let calc = array[init - 1] / array[init + 1]
+        return calc
+    }
 }
 
-function resolve(array){
-    array = numberfy(array);
-    expAndRad(array)
-     
+function addAndSub(array) {
+    if (array.includes('+') && array.includes('-')) {
+        if (array.indexOf('+') < array.indexOf('-')) {
+            let init = array.indexOf('+')
+            let calc = array[init - 1] + array[init + 1]
+            return calc
+        } else {
+            let init = array.indexOf('-')
+            let calc = array[init - 1] - array[init + 1]
+            return calc
+        }
+    }
+    if (array.includes('+')) {
+        let init = array.indexOf('+')
+        let calc = array[init - 1] + array[init + 1]
+        return calc
+    } else {
+        let init = array.indexOf('-')
+        let calc = array[init - 1] - array[init + 1]
+        return calc
+
+    }
 }
 
-function numberfy(array){
+function numberfy(array) {
     // essa função transforma os numeros dentro da string em tipo number
     // e os operadores continuam em string
-    for(let i = 0; i < array.length; i++){
-        if(array[i].match(/\d+/g)){
+    for (let i = 0; i < array.length; i++) {
+        if (array[i].match(/\d+/g)) {
             array[i] = Number(array[i])
         }
     }

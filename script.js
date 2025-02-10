@@ -1,8 +1,8 @@
-let display = document.getElementById('display')
-let history = document.getElementById('history')
+// let display = document.getElementById('display')
+// let history = document.getElementById('history')
 
-let opPonto = ['+', '-', '*', '/'];
-let oper = ["+", "-", "*", "/"];
+let display = '(5000+2500-578)x2-500-998';
+
 
 function historyInsert(num) {
     history.innerHtml = `<p>${num}</p>`
@@ -19,7 +19,7 @@ function type(object) {
 
 
 function result() {
-    let expression = display.innerText
+    let expression = display
     let regex = /(\d+|mod|x²|[÷x\-\+\%\(\)√π])/g;
     expression = expression.match(regex)
     if (expression == null) {
@@ -27,10 +27,18 @@ function result() {
     } else {
         //display.innerText = verifySymbol(expression);
         let result = precedenceOrder(numberfy(expression))
-        for (let i = 0; result.length > 1; i++) {
-            result = precedenceOrder(result)
+        if(result[0] == '-'){
+            result = result.join('')
+        }else {
+            for (let i = 0; result.length > 1; i++) {
+                console.log(result)
+                result = precedenceOrder(result)
+            }
+
+            result = result.join('')
         }
-        display.innerText = result
+
+        console.log(result)
     }
 
 }
@@ -185,6 +193,13 @@ function addAndSub(array) {
         return calc
     } else {
         let init = array.indexOf('-')
+        for(let i = 0; i < array.length; i++){
+            if(array[i] == '-'){
+                if(array[i].indexOf('-') > init){
+                    init = array[i].indexOf('-')
+                }
+            }
+        }
         let calc = array[init - 1] - array[init + 1]
         return calc
 
@@ -210,3 +225,5 @@ function deleteDisplay() {
         display.innerText = display.innerText.slice(0, -1)
     }
 }
+
+result()

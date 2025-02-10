@@ -1,12 +1,7 @@
-// let display = document.getElementById('display')
-// let history = document.getElementById('history')
-
-let display = '(5000+2500-578)x2-500-998';
+let display = document.getElementById('display')
+let history = document.getElementById('history')
 
 
-function historyInsert(num) {
-    history.innerHtml = `<p>${num}</p>`
-}
 
 function type(object) {
     if (display.innerText == `escreva um calculo`) {
@@ -17,9 +12,27 @@ function type(object) {
     }
 }
 
+function createDisplayElement(text = null,calc){
+    const result = document.createElement('p');
+    const expression = document.createElement('p')
+    const calculator = document.createElement('p')
+    const element = document.createElement('div')
+    if(text) {
+        result.innerText = text;
+        expression.innerText = '=';
+        calculator.innerText = calc;
+        element.prepend(result);
+        element.prepend(expression);
+        element.prepend(calculator);
+    }
+    
+    return element
+}
+
 
 function result() {
-    let expression = display
+    let expression = display.innerText;
+    let calc = expression;
     let regex = /(\d+|mod|x²|[÷x\-\+\%\(\)√π])/g;
     expression = expression.match(regex)
     if (expression == null) {
@@ -38,7 +51,7 @@ function result() {
             result = result.join('')
         }
 
-        console.log(result)
+       history.prepend(createDisplayElement(result,calc))
     }
 
 }

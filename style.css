@@ -245,3 +245,16 @@ button:hover {
     -moz-box-shadow: inset 0px 0px 49px -14px rgba(0, 0, 0, 0.2);
     box-shadow: inset 0px 0px 49px -14px rgba(0, 0, 0, 0.2);
 }
+
+.history {
+    display: flex;
+    flex-direction: column-reverse;
+    overflow: hidden;
+
+}
+
+.history div {
+    
+    display: flex;
+    justify-content: space-between;
+}

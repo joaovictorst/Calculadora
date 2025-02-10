@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  /* outline: dashed 1px red; */
+  outline: dashed 1px red;
 
   font-family: "Nunito Sans", serif;
 }
@@ -168,3 +168,20 @@ button:hover {
     display: grid;
     grid-template-columns: 70% 25% 5%;
 }
+.menu-select .basicButton {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-select .basicButton:first-child {
+  position: absolute;
+}
+
+.menu-select .basicButton:focus-within {
+  background-color: red;
+}
+
+.menu-select .options {
+  z-index: 2;
+}
+

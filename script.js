@@ -1,23 +1,31 @@
-let display = document.getElementById('display')
-let history = document.getElementById('history')
+const regex = /(\d+|mod|x²|[÷x\-\+\%\(\)√π])/g;
 
+const display = document.getElementById('display')
+const history = document.getElementById('history')
 
-
-function type(object) {
-    if (display.innerText == `escreva um calculo`) {
-        display.innerText = object.innerText
-    } else {
-
-        display.innerText += object.innerText
+function changed(array) {
+    if(array.value.match(regex)){
+        console.log('ta funcionando')
+    }else {
+        alert('Insira apenas cálculos validos')
     }
 }
 
-function createDisplayElement(text = null,calc){
+function type(object) {
+    if (display.value == `escreva um calculo`) {
+        display.value = object.innerText
+    } else {
+
+        display.value += object.innerText
+    }
+}
+
+function createDisplayElement(text = null, calc) {
     const result = document.createElement('p');
     const expression = document.createElement('p')
     const calculator = document.createElement('p')
     const element = document.createElement('div')
-    if(text) {
+    if (text) {
         result.innerText = text;
         expression.innerText = '=';
         calculator.innerText = calc;
@@ -25,24 +33,23 @@ function createDisplayElement(text = null,calc){
         element.prepend(expression);
         element.prepend(calculator);
     }
-    
+
     return element
 }
 
-
 function result() {
-    let expression = display.innerText;
+    let expression = display.value;
     let calc = expression;
-    let regex = /(\d+|mod|x²|[÷x\-\+\%\(\)√π])/g;
     expression = expression.match(regex)
     if (expression == null) {
         display.innerText = `escreva um calculo`
     } else {
         //display.innerText = verifySymbol(expression);
         let result = precedenceOrder(numberfy(expression))
-        if(result[0] == '-'){
+        if (result[0] == '-') {
             result = result.join('')
-        }else {
+        } else {
+            console.log(result)
             for (let i = 0; result.length > 1; i++) {
                 console.log(result)
                 result = precedenceOrder(result)
@@ -51,7 +58,7 @@ function result() {
             result = result.join('')
         }
 
-       history.prepend(createDisplayElement(result,calc))
+        history.prepend(createDisplayElement(result, calc))
     }
 
 }
@@ -61,6 +68,10 @@ function precedenceOrder(array) {
         let calc = parenteses(array)
         let init = array.indexOf('(')
         let close = array.indexOf(')')
+        if (array.filter(x => x === '(').length > 1) {
+            init = array.lastIndexOf('(')
+            close = array.indexOf(')', init)
+        }
         array.splice(init, close - init + 1, calc)
         return array
     } else if (array.includes('x²') || array.includes('√')) {
@@ -70,17 +81,17 @@ function precedenceOrder(array) {
         } else {
             init = array.indexOf('√')
         }
-        if(array.includes('x²') && array.includes('√')){
-            if(array.indexOf('x²') < array.indexOf('√')){
+        if (array.includes('x²') && array.includes('√')) {
+            if (array.indexOf('x²') < array.indexOf('√')) {
                 init = array.indexOf('x²')
-            }else {
+            } else {
                 init = array.indexOf('√')
             }
         }
         let calc = expAndRad(array)
-        if(array[init] == '√'){
+        if (array[init] == '√') {
             array.splice(init, 2, calc)
-        }else{
+        } else {
             array.splice(init - 1, 2, calc)
         }
         return array
@@ -91,10 +102,10 @@ function precedenceOrder(array) {
         } else {
             init = array.indexOf('÷')
         }
-        if(array.includes('x') && array.includes('÷')){
-            if(array.indexOf('x') < array.indexOf('÷')){
+        if (array.includes('x') && array.includes('÷')) {
+            if (array.indexOf('x') < array.indexOf('÷')) {
                 init = array.indexOf('x')
-            }else {
+            } else {
                 init = array.indexOf('÷')
             }
         }
@@ -108,10 +119,10 @@ function precedenceOrder(array) {
         } else {
             init = array.indexOf('-')
         }
-        if(array.includes('+') && array.includes('-')){
-            if(array.indexOf('+') < array.indexOf('-')){
+        if (array.includes('+') && array.includes('-')) {
+            if (array.indexOf('+') < array.indexOf('-')) {
                 init = array.indexOf('+')
-            }else {
+            } else {
                 init = array.indexOf('-')
             }
         }
@@ -124,9 +135,13 @@ function precedenceOrder(array) {
 
 function parenteses(array) {
     if (array.includes('(') && array.includes(')')) {
-        let init = array.indexOf('(') + 1
+        let init = array.indexOf('(')
         let close = array.indexOf(')')
-        let express = array.slice(init, close)
+        if (array.filter(x => x === '(').length > 1) {
+            init = array.lastIndexOf('(')
+            close = array.indexOf(')')
+        }
+        let express = array.slice(init + 1, close)
         let calc = precedenceOrder(express)
 
         for (let i = 0; calc.length > 1; i++) {
@@ -145,7 +160,7 @@ function expAndRad(array) {
             return calc
         } else {
             let init = array.indexOf('√')
-            let calc = Math.sqrt(array[init+1])
+            let calc = Math.sqrt(array[init + 1])
             return calc
         }
     }
@@ -157,7 +172,7 @@ function expAndRad(array) {
     } else {
         let init = array.indexOf('√')
 
-        let calc = Math.sqrt(array[init+1])
+        let calc = Math.sqrt(array[init + 1])
         return calc
     }
 
@@ -206,9 +221,9 @@ function addAndSub(array) {
         return calc
     } else {
         let init = array.indexOf('-')
-        for(let i = 0; i < array.length; i++){
-            if(array[i] == '-'){
-                if(array[i].indexOf('-') > init){
+        for (let i = 0; i < array.length; i++) {
+            if (array[i] == '-') {
+                if (array[i].indexOf('-') > init) {
                     init = array[i].indexOf('-')
                 }
             }
@@ -233,9 +248,9 @@ function numberfy(array) {
 
 function deleteDisplay() {
     if (display.innerText == "escreva um calculo") {
-        display.innerText = "";
+        display.value = "";
     } else {
-        display.innerText = display.innerText.slice(0, -1)
+        display.value = display.value.slice(0, -1)
     }
 }
 

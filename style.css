@@ -1,249 +1,159 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    /* outline: dashed 1px red; */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* outline: dashed 1px red; */
 
-    font-family: "Nunito Sans", serif;
+  font-family: "Nunito Sans", serif;
 }
 
 html,
 body {
-    background-color: rgb(85, 85, 85);
-    width: 100%;
-    height: 100%;
+  background-color: rgb(85, 85, 85);
+  width: 100%;
+  height: 100%;
 }
-
 
 .header {
-    width: 100%;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  width: 100%;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.header button:first-child, .header .basicButton{
-    background-color: transparent;
-    margin-left: 8px;
+.header button:first-child,
+.header .basicButton {
+  background-color: transparent;
+  margin-left: 8px;
 }
 
 .header .utilityButtons {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    gap: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 8px;
 }
 
-.header .utilityButtons button{
-    height: 60px;
-    border: none;
-    background-color: transparent;
+.header .utilityButtons button {
+  height: 60px;
+  border: none;
+  background-color: transparent;
 }
 
-.header .utilityButtons button:last-child{
-    background-color: #cfcfcf;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 999px;
-    width: 30px;
-    height: 30px;
-    margin-right: 8px;
+.header .utilityButtons button:last-child {
+  background-color: #cfcfcf;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  width: 30px;
+  height: 30px;
+  margin-right: 8px;
 }
 
-.header .utilityButtons img:nth-child(1),.header .utilityButtons img:nth-child(2) {
-    width: 15px;
+.header .utilityButtons img:nth-child(1),
+.header .utilityButtons img:nth-child(2) {
+  width: 15px;
 }
 
 .header .basicButton {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .basicButton img {
-    transform: translateY(2px);
-    width: 15px;
-    height: 15px;
+  transform: translateY(2px);
+  width: 15px;
+  height: 15px;
 }
 
 .calc {
-    display: block;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #f5f5f5;
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #f5f5f5;
 
-    width: 500px;
-    border-radius: 8px;
+  width: 500px;
+  border-radius: 8px;
 }
 
 .calc button {
-    display: block;
-    border: none;
-    border-radius: 4px;
-    background-color: #fafafa;
+  display: block;
+  border: none;
+  border-radius: 4px;
+  background-color: #fafafa;
 }
 
 .delete button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #f04a50;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f04a50;
 }
 
-
 button:hover {
-    cursor: pointer;
-    background-color: rgba(0, 0, 0, 0.008); 
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.008);
 
-    transition: 0.3s;
+  transition: 0.3s;
 }
 
 .display {
-    background-color: #ffffff;
-    height: 50px;
+  background-color: #ffffff;
+  height: 50px;
+  width: 100%;
+  border: none;
+  padding: 10px;
+}
 
-    display: flex;
-    align-items: center;
-    justify-content: start;
+.display:focus {
+  box-shadow: 0 0 0 0;
+  border: 0 none;
+  outline: solid 1px rgb(90, 90, 90);
 
-    padding: 10px;
 }
 
 .parent {
-    display: grid;
-    grid-template-rows: repeat(5, 20%);
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
-    padding: 8px;
-    gap: 8px;
-
-    
-}
-
-.parent button {
-    -webkit-box-shadow: 1px 1px 11px 1px rgba(0, 0, 0, 0.10);
-    -moz-box-shadow: 1px 1px 11px 1px rgba(0, 0, 0, 0.10);
-    box-shadow: 1px 1px 11px 1px rgba(0, 0, 0, 0.10);
-}
-
-.parent div:not(.equal) {
-    height: 40px;
-}
-
-.div1 {
-    grid-area: 1 / 1 / 2 / 2;
-}
-
-.div2 {
-    grid-area: 1 / 2 / 2 / 3;
-}
-
-.div3 {
-    grid-area: 1 / 3 / 2 / 4;
-}
-
-.div4 {
-    grid-area: 1 / 4 / 2 / 5;
-}
-
-.div5 {
-    grid-area: 1 / 5 / 2 / 6;
-}
-
-.div6 {
-    grid-area: 2 / 1 / 3 / 2;
-}
-
-.div7 {
-    grid-area: 2 / 2 / 3 / 3;
-}
-
-.div8 {
-    grid-area: 2 / 3 / 3 / 4;
-}
-
-.div9 {
-    grid-area: 2 / 4 / 3 / 5;
-}
-
-.div10 {
-    grid-area: 2 / 5 / 3 / 6;
-}
-
-.div11 {
-    grid-area: 3 / 1 / 4 / 2;
-}
-
-.div12 {
-    grid-area: 3 / 2 / 4 / 3;
-}
-
-.div13 {
-    grid-area: 3 / 3 / 4 / 4;
-}
-
-.div14 {
-    grid-area: 3 / 4 / 4 / 5;
-}
-
-.div15 {
-    grid-area: 3 / 5 / 4 / 6;
-}
-
-.div16 {
-    grid-area: 4 / 1 / 5 / 2;
-}
-
-.div17 {
-    grid-area: 4 / 2 / 5 / 3;
-}
-
-.div18 {
-    grid-area: 4 / 3 / 5 / 4;
-}
-
-.div19 {
-    grid-area: 4 / 4 / 5 / 5;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  padding: 8px;
+  gap: 8px;
 }
 
 .equal {
-    grid-area: 4 / 5 / 6 / 6;
+    grid-row: 4 / span 2;
+    grid-column: 5 / span 1;
 }
 
-.div21 {
-    grid-area: 5 / 1 / 6 / 2;
+.parent button {
+  -webkit-box-shadow: 1px 1px 11px 1px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 1px 1px 11px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 1px 11px 1px rgba(0, 0, 0, 0.1);
 }
 
-.div22 {
-    grid-area: 5 / 2 / 6 / 3;
+.parent div:not(.equal) {
+  height: 40px;
 }
-
-.div23 {
-    grid-area: 5 / 3 / 6 / 4;
-}
-
-.div24 {
-    grid-area: 5 / 4 / 6 / 5;
-}
-
 
 .parent div button {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 .history {
-    background-color: #f7f7f7;
-    width: 100%;
-    height: 300px;
+  background-color: #f7f7f7;
+  width: 100%;
+  height: 300px;
 
-    -webkit-box-shadow: inset 0px 0px 49px -14px rgba(0, 0, 0, 0.2);
-    -moz-box-shadow: inset 0px 0px 49px -14px rgba(0, 0, 0, 0.2);
-    box-shadow: inset 0px 0px 49px -14px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: inset 0px 0px 49px -14px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: inset 0px 0px 49px -14px rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0px 0px 49px -14px rgba(0, 0, 0, 0.2);
 }
 
 .history {
@@ -255,6 +165,6 @@ button:hover {
 
 .history div {
     
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 70% 25% 5%;
 }

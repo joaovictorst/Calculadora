@@ -1,15 +1,45 @@
+:root {
+  --body-bg: rgb(85, 85, 85);
+  --body-color: #fff;
+  --bg-header: #2f2f2f;
+  --bg-close-button: #876ac2;
+  --bg-header: #2f2f2f;
+  --bg-history: #3d3d3d;
+  --bg-display:#404040;
+  --bg-calc: #383838;
+  --bg-calc-button: #454545;
+  --bg-menu: #242424;
+  --bg-menu-hover: #383838;
+}
+
+.dark-mode:root {
+
+  --body-bg: #3d3d3d;
+  --body-color: #000000;
+  --bg-header: #2f2f2f;
+  --bg-close-button: #a5a5a5;
+  --bg-header: #ffffff;
+  --bg-history: #f7f7f7;
+  --bg-display: #fff;
+  --bg-calc: #f5f5f5;
+  --bg-calc-button: #fafafa;
+  --bg-menu: #e7e7e7;
+  --bg-menu-hover: #d4d4d4;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  outline: dashed 1px red;
+  /* outline: dashed 1px red; */
 
   font-family: "Nunito Sans", serif;
+  color: var(--body-color);
 }
 
 html,
 body {
-  background-color: rgb(85, 85, 85);
+  background-color: var(--body-bg);
   width: 100%;
   height: 100%;
 }
@@ -20,6 +50,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background-color: var(--bg-header);
+  border-radius: 8px 8px 0 0;
 }
 
 .header button:first-child,
@@ -42,7 +74,7 @@ body {
 }
 
 .header .utilityButtons button:last-child {
-  background-color: #cfcfcf;
+  background-color: var(--bg-close-button);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -75,7 +107,7 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #f5f5f5;
+  background-color: var(--bg-calc);
 
   width: 500px;
   border-radius: 8px;
@@ -85,7 +117,7 @@ body {
   display: block;
   border: none;
   border-radius: 4px;
-  background-color: #fafafa;
+  background-color: var(--bg-calc-button);
 }
 
 .delete button {
@@ -103,7 +135,7 @@ button:hover {
 }
 
 .display {
-  background-color: #ffffff;
+  background-color: var(--bg-display);
   height: 50px;
   width: 100%;
   border: none;
@@ -127,8 +159,8 @@ button:hover {
 }
 
 .equal {
-    grid-row: 4 / span 2;
-    grid-column: 5 / span 1;
+  grid-row: 4 / span 2;
+  grid-column: 5 / span 1;
 }
 
 .parent button {
@@ -147,7 +179,7 @@ button:hover {
 }
 
 .history {
-  background-color: #f7f7f7;
+  background-color: var(--bg-history);
   width: 100%;
   height: 300px;
 
@@ -157,31 +189,74 @@ button:hover {
 }
 
 .history {
-    display: flex;
-    flex-direction: column-reverse;
-    overflow: hidden;
+  display: flex;
+  flex-direction: column-reverse;
+  overflow: hidden;
 
 }
 
 .history div {
-    
-    display: grid;
-    grid-template-columns: 70% 25% 5%;
-}
-.menu-select .basicButton {
-  display: flex;
-  flex-direction: column;
+
+  display: grid;
+  grid-template-columns: 70% 25% 5%;
 }
 
-.menu-select .basicButton:first-child {
+.menu-container {
+  display: inline-flex;
+  flex-direction: row;
+  cursor: pointer;
+}
+
+.menu {
+  position: relative;
+  padding: 0rem 0.5rem;
+}
+
+.menu-content {
+  display: flex;
+  align-items: center;
+  transform: translate(-20%);
+  background: var(--bg-menu);
+  border-radius: 8px;
+  padding: 8px;
+  margin: 8px 0 0 0;
+  -webkit-box-shadow: 0px 0px 30px 5px rgba(0, 0, 0, 0.10);
+  -moz-box-shadow: 0px 0px 30px 5px rgba(0, 0, 0, 0.10);
+  box-shadow: 0px 0px 30px 5px rgba(0, 0, 0, 0.10);
+}
+
+.menu>.menu-content {
+  display: none;
+}
+
+.menu>.menu-content {
+  display: none;
   position: absolute;
 }
 
-.menu-select .basicButton:focus-within {
-  background-color: red;
+.header .menu>.menu-content button {
+  display: flex;
+  align-items: start;
 }
 
-.menu-select .options {
-  z-index: 2;
+.menu:focus-within {
+  background-color:var(--bg-meu);
 }
 
+.header .menu .menu-content button {
+  display: flex;
+  align-items: start;
+  margin: 0;
+  gap: 4px;
+  background: var(--bg-menu);
+}
+
+.header .menu .menu-content button:hover {
+  background: var(--bg-menu-hover);
+}
+
+.menu:focus-within>.menu-content {
+  display: flex;
+  flex-direction: column;
+
+}
